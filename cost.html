@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="styles.css">
+        <link href='https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css' rel='stylesheet'>
+        <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+        <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
+        <title>Mateusz Przywarty</title>
+    </head>
+    <body>
+        <header class="l-header">
+            <nav class="nav bd-grid">
+                <div>
+                    <a href="#" class="nav__logo">Mateusz Przywarty</a>
+                </div>
+                <div class="nav__menu" id="nav-menu">
+                    <ul class="nav__list">
+                        <li class="nav__item"><a href="index.html" class="nav__link">Homepage</a></li>
+                        <li class="nav__item"><a href="about.html" class="nav__link">About me</a></li>
+                        <li class="nav__item"><a href="cost.html" class="nav__link  active-link">Cost Calculator</a></li>
+                        <li class="nav__item"><a href="projects.html" class="nav__link">Projects</a></li>
+                        <li class="nav__item"><a href="contact.html" class="nav__link">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="nav__toggle" id="nav-toggle">
+                    <i class='bx bx-menu'></i>
+                </div>
+            </nav>
+        </header>
+        <div style="max-width: 1000px; margin-left: auto; margin-right: auto; padding-left: 10px; padding-right: 10px;" class="container">
+            <section>
+                <div class="welcome-page">
+                    <div class="welcome">
+                        <h1>Calculate Your service price!</h1>
+                    </div>
+                    <div class="about-me">
+                        <p>With this free calculator I've developed, You can check your service cost before contacting me!</p>
+                    </div>
+                </div>
+            </section>
+            
+            <div id="calculator">
+                <label>Select Services:</label>
+                <div class="service-checkbox">
+                    <input type="checkbox" id="webDesign" value="Web-Design">
+                    <label for="webDesign">Web Design</label>
+                </div>
+            
+                <div class="service-checkbox">
+                    <input type="checkbox" id="uiOptimisation" value="UX/UI Optimisation">
+                    <label for="uiOptimisation">UX/UI Optimisation</label>
+                </div>
+            
+                <div class="service-checkbox">
+                    <input type="checkbox" id="companyBranding" value="Company Branding">
+                    <label for="companyBranding">Company Branding</label>
+                </div>
+            
+                <div class="service-checkbox">
+                    <input type="checkbox" id="graphicDesign" value="Graphic Design">
+                    <label for="graphicDesign">Graphic Design</label>
+                </div>
+            
+                <div class="service-checkbox">
+                    <input type="checkbox" id="animationDesign" value="Animation Design">
+                    <label for="animationDesign">Animation Design</label>
+                </div>
+            
+                <div class="service-checkbox">
+                    <input type="checkbox" id="frontEndDevelopment" value="Front-end development">
+                    <label for="frontEndDevelopment">Front-end Development</label>
+                </div>
+            
+                <div class="service-checkbox">
+                    <input type="checkbox" id="digitalMarketing" value="Digital Marketing">
+                    <label for="digitalMarketing">Digital Marketing</label>
+                </div>
+            
+                <div class="service-checkbox">
+                    <input type="checkbox" id="facebookGoogleAds" value="Facebook and Google Ads">
+                    <label for="facebookGoogleAds">Facebook and Google Ads</label>
+                </div>
+            
+                <label for="hoursInput">Enter Estimated Time Needed:</label>
+                <input type="number" id="hoursInput" placeholder="0">
+            
+                <button onclick="calculateCost()">Calculate Cost</button>
+            
+                <div id="result"></div>
+            </div>
+            <h1 style="margin-top: 70px;">Interested?</h1>
+            <div style="margin-top: 30px; display: flex; justify-content: start;">
+                <a href="contact.html" class="button-project2">Contact Me</a>
+                </div>
+            </div>
+        <footer style="margin-top: 100px;" class="footer">
+            <p class="footer__copy">Mateusz Przywarty 2024</p>
+        </footer>
+        <script>
+         function calculateCost() {
+        const checkboxes = document.querySelectorAll('.service-checkbox input');
+        const hoursInput = document.getElementById('hoursInput');
+        const resultDiv = document.getElementById('result');
+
+        let totalCost = 0;
+        const hours = parseFloat(hoursInput.value);
+
+        if (isNaN(hours) || hours <= 0) {
+            resultDiv.innerHTML = 'Please enter a valid number of hours.';
+            return;
+        }
+
+        checkboxes.forEach(checkbox => {
+            if (checkbox.checked) {
+                totalCost += getCost(checkbox.value) * hours;
+            }
+        });
+
+        resultDiv.innerHTML = `Total Estimated Cost: $${totalCost}`;
+    }
+
+    function getCost(service) {
+        switch (service) {
+            case 'Web-Design':
+                return 500;
+            case 'UX/UI Optimisation':
+                return 300;
+            case 'Company Branding':
+                return 200;
+            case 'Graphic Design':
+                return 150;
+            case 'Animation Design':
+                return 600;
+            case 'Front-end development':
+                return 1500;
+            case 'Digital Marketing':
+                return 500;
+            case 'Facebook and Google Ads':
+                return 1200;
+            default:
+                return 0;
+        }
+    }   
+        </script>
+        <script src="script.js"></script>
+    </body>
+</html>
